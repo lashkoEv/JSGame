@@ -7,13 +7,49 @@
   </head>
   <body>
     <style>
-      body {
-        background-color: #292929;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .scene {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2)
+          ),
+          url(./img/background/bg-2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+
+        height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
       }
     </style>
 
-    <img src="./img/monsters/monster-1.gif" alt="" />
-    <img src="./img/monsters/monster-2.gif" alt="" />
-    <img src="./img/monsters/monster-3.gif" alt="" />
+    <div class="scene">
+      <img
+        style="margin-left: 400px"
+        src="./img/monsters/monster-1.gif"
+        width="200px"
+        alt=""
+      />
+      <img
+        style="margin-top: 400px"
+        width="200px"
+        src="./img/monsters/monster-2.gif"
+        alt=""
+      />
+      <img
+        style="margin-right: 400px"
+        src="./img/monsters/monster-3.gif"
+        width="300px"
+        alt=""
+      />
+    </div>
   </body>
 </html>
