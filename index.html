@@ -3,53 +3,118 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./public/img/icons/logo.png"
+      type="image/x-icon"
+    />
+    <script defer src="./js/app.js"></script>
+    <title>Monster Clicker</title>
   </head>
+
   <body>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      .scene {
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.2),
-            rgba(0, 0, 0, 0.2)
-          ),
-          url(./img/background/bg-2.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom;
-
-        height: 100vh;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-      }
-    </style>
-
     <div class="scene">
-      <img
-        style="margin-left: 400px"
-        src="./img/monsters/monster-1.gif"
-        width="200px"
-        alt=""
-      />
-      <img
-        style="margin-top: 400px"
-        width="200px"
-        src="./img/monsters/monster-2.gif"
-        alt=""
-      />
-      <img
-        style="margin-right: 400px"
-        src="./img/monsters/monster-3.gif"
-        width="300px"
-        alt=""
-      />
+      <div class="player-info">
+        <span>HP: </span>
+
+        <div class="hp-wrapper player__hp-wrapper">
+          <div class="hp player__hp"></div>
+        </div>
+
+        <div class="player__score">
+          SCORE:
+
+          <span id="score">300</span>
+
+          <img
+            width="30px"
+            src="./public/img/rewards/reward-simple.png"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="playing-field">
+        <div class="monster-wrapper">
+          <div class="hp-wrapper">
+            <div class="hp"></div>
+          </div>
+
+          <img
+            class="monster"
+            src="./public/img/monsters/monster-1.gif"
+            alt=""
+          />
+        </div>
+
+        <div class="monster-wrapper">
+          <div class="hp-wrapper">
+            <div class="hp"></div>
+          </div>
+
+          <img
+            class="monster"
+            src="./public/img/monsters/monster-2.gif"
+            alt=""
+          />
+        </div>
+
+        <div class="monster-wrapper">
+          <div class="hp-wrapper">
+            <div class="hp"></div>
+          </div>
+
+          <img
+            class="monster"
+            src="./public/img/monsters/monster-3.gif"
+            alt=""
+          />
+        </div>
+
+        <div class="monster-wrapper">
+          <div class="hp-wrapper">
+            <div class="hp"></div>
+          </div>
+
+          <img
+            class="monster"
+            src="./public/img/monsters/monster-1.gif"
+            alt=""
+          />
+        </div>
+
+        <div class="monster-wrapper">
+          <div class="hp-wrapper">
+            <div class="hp"></div>
+          </div>
+
+          <img
+            class="monster"
+            src="./public/img/monsters/monster-2.gif"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div id="sword" class="sword">
+        <img src="./public/img/player/sword4.png" alt="" class="sword__img" />
+      </div>
+      <!-- <img
+            class="reward"
+            src="./public/img/rewards/reward-simple.png"
+            alt=""
+          />
+          <img
+                class="reward"
+                src="./public/img/rewards/reward-middle.png"
+                alt=""
+              />
+              <img
+                    class="reward"
+                    src="./public/img/rewards/reward-grand.png"
+                    alt=""
+                  /> -->
     </div>
   </body>
 </html>
