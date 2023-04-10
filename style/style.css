@@ -10,8 +10,8 @@
 }
 
 .scene {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url(../public/img/background/bg-2-2.png);
+  background-image: linear-gradient(rgba(122, 122, 122, 0.1), rgba(66, 66, 66, 0.1)),
+    url(../public/img/background/bg-2-4.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -72,10 +72,10 @@
 }
 
 .hp-wrapper {
-  border: 4px solid rgb(29, 29, 29);
+  border: 4px solid rgb(0, 0, 0);
   width: 60%;
   height: 24px;
-  background: rgba(54, 54, 54, 0.5);
+  background: rgba(100, 100, 100, 0.5);
 }
 
 .hp {
