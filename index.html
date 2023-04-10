@@ -9,12 +9,12 @@
       href="./public/img/icons/logo.png"
       type="image/x-icon"
     />
-    <script defer src="./js/app.js"></script>
+    <script defer type="module" src="./js/app.js"></script>
     <title>Monster Clicker</title>
   </head>
 
   <body>
-    <div class="scene">
+    <div id="scene" class="scene">
       <div class="player-info">
         <span>HP: </span>
 
@@ -44,86 +44,12 @@
         />
       </button>
 
-      <div class="playing-field">
-        <div class="monster-wrapper">
-          <div class="hp-wrapper">
-            <div class="hp"></div>
-          </div>
-
-          <img
-            class="monster"
-            src="./public/img/monsters/monster-1.gif"
-            alt=""
-          />
-        </div>
-
-        <div class="monster-wrapper">
-          <div class="hp-wrapper">
-            <div class="hp"></div>
-          </div>
-
-          <img
-            class="monster"
-            src="./public/img/monsters/monster-2.gif"
-            alt=""
-          />
-        </div>
-
-        <div class="monster-wrapper">
-          <div class="hp-wrapper">
-            <div class="hp"></div>
-          </div>
-
-          <img
-            class="monster"
-            src="./public/img/monsters/monster-3.gif"
-            alt=""
-          />
-        </div>
-
-        <div class="monster-wrapper">
-          <div class="hp-wrapper">
-            <div class="hp"></div>
-          </div>
-
-          <img
-            class="monster"
-            src="./public/img/monsters/monster-1.gif"
-            alt=""
-          />
-        </div>
-
-        <div class="monster-wrapper">
-          <div class="hp-wrapper">
-            <div class="hp"></div>
-          </div>
-
-          <img
-            class="monster"
-            src="./public/img/monsters/monster-2.gif"
-            alt=""
-          />
-        </div>
+      <div id="playingField" class="playing-field">
       </div>
 
       <div id="sword" class="sword">
-        <img src="./public/img/player/sword4.png" alt="" class="sword__img" />
+        <img src="./public/img/player/sword5.png" alt="" class="sword__img" />
       </div>
-      <!-- <img
-            class="reward"
-            src="./public/img/rewards/reward-simple.png"
-            alt=""
-          />
-          <img
-                class="reward"
-                src="./public/img/rewards/reward-middle.png"
-                alt=""
-              />
-              <img
-                    class="reward"
-                    src="./public/img/rewards/reward-grand.png"
-                    alt=""
-                  /> -->
     </div>
   </body>
 </html>

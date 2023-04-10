@@ -6,17 +6,27 @@ Lashko:
 + scene markup
 + main audio theme
 + sound on/off button
++ player attack animation
++ monsters classes
++ dealing damage mechanic
+
 
 TODO: 
-- modal windows
+- receiving damage mechanic
+- create modal windows:
     - player won
     - player lost
-- menu window
-- monsters classes
-- fight mechanic
-- rewards mechanic
-- levels mechanic
-- save progress
+    - menu will player click ESC: 
+        * save progress
+        * save progress and back to main menu
+        * back to main menu without saving
+- main menu window
+- rewards mechanic (change score)
+- scene class
+    - levels mechanic
+- save progress (score and hp)
+- Observer - clean the scene / super attack
+
 
 Features for later?
 - mb storytelling?
