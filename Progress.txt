@@ -1,0 +1,15 @@
+Lashko:
+
++ images: gifs of monsters, background scene, rewards, etc;
++ player (movable sword);
++ main font
++ scene markup
++ main audio theme
+
+TODO: 
+- modal windows
+    - player won
+    - player lost
+- menu window 
+- sound on/off button
+
