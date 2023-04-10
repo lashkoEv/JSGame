@@ -5,11 +5,19 @@ Lashko:
 + main font
 + scene markup
 + main audio theme
++ sound on/off button
 
 TODO: 
 - modal windows
     - player won
     - player lost
-- menu window 
-- sound on/off button
+- menu window
+- monsters classes
+- fight mechanic
+- rewards mechanic
+- levels mechanic
+- save progress
+
+Features for later?
+- mb storytelling?
 

@@ -133,6 +133,21 @@
   width: 120px;
 }
 
+.sound-button {
+  width: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+
+.sound-img {
+  width: 100%;
+}
+
 @keyframes rewards {
   0% {
     transform: translateY(-40px);
