@@ -11,6 +11,7 @@ Lashko:
 + dealing damage mechanic
 + player class
 + add punch sound
++ main menu window
 
 prototype: 
 + receiving damage mechanic
@@ -28,9 +29,9 @@ TODO:
         * save progress
         * save progress and back to main menu
         * back to main menu without saving
-- main menu window
 - rewards mechanic (change score)
 - save progress (score and hp)
+- main menu js (button handlers)
 
 
 
