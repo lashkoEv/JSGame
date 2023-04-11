@@ -25,7 +25,7 @@ export class Scene {
   }
 
   #createMonsters() {
-    const monstersCount = Math.floor(Math.random() * 7 + 1);
+    const monstersCount = Math.floor(Math.random() * 6 + 1);
 
     for (let i = 0; i < monstersCount; i++) {
       const monsterType = Math.floor(Math.random() * 3 + 1);
