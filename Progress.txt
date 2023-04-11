@@ -32,6 +32,7 @@ TODO:
 - rewards mechanic (change score)
 - save progress (score and hp)
 - main menu js (button handlers)
+- redo prototypes
 
 
 
