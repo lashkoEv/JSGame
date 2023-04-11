@@ -1,12 +1,14 @@
 export class Player {
+  static HP = 1000;
+
   #hp;
   #score;
   #damage;
 
-  constructor(hp = 500, score = 0) {
+  constructor(hp = Player.HP, score = 0) {
     this.#hp = hp;
     this.#score = score;
-    damage = 5;
+    this.#damage = 5;
   }
 
   get damage() {
@@ -15,6 +17,8 @@ export class Player {
 
   set hp(inputDamage) {
     this.#hp -= inputDamage;
+
+    playerHp.style.width = (100 * this.#hp) / Player.HP + "%";
   }
 
   get hp() {

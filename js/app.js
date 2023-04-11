@@ -2,24 +2,18 @@ import { initSound } from "./Components/Init/initSound.js";
 import {
   initSwordAnimation,
   initSwordMovement,
+  initSwordSound,
 } from "./Components/Init/initSword.js";
-import { Lizard } from "./Components/Lizard/Lizard.js";
-import { Orc } from "./Components/Orc/Orc.js";
-import { Slime } from "./Components/Slime/Slime.js";
+import { Scene } from "./Components/Scene/Scene.js";
 
 const app = () => {
   initSwordMovement();
   initSwordAnimation();
+  initSwordSound();
 
   initSound();
 
-  const orc = new Orc();
-  const lizard = new Lizard();
-  const slime = new Slime();
-
-  playingField.append(orc.monsterWrapper);
-  playingField.append(lizard.monsterWrapper);
-  playingField.append(slime.monsterWrapper);
+  const scene = new Scene();
 };
 
 app();

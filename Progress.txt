@@ -10,11 +10,18 @@ Lashko:
 + monsters classes
 + dealing damage mechanic
 + player class
++ add punch sound
+
+prototype: 
++ receiving damage mechanic
++ scene class
++ levels mechanic
++ Observer - dealing damage
+
 
 
 TODO: 
-- receiving damage mechanic
-- create modal windows:
+- create modal windows + mechanic:
     - player won
     - player lost
     - menu will player click ESC: 
@@ -23,12 +30,11 @@ TODO:
         * back to main menu without saving
 - main menu window
 - rewards mechanic (change score)
-- scene class
-    - levels mechanic
 - save progress (score and hp)
-- Observer - clean the scene / super attack
+
 
 
 Features for later?
 - mb storytelling?
+- change Observer to clean the scene / super attack?
 
