@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "primary";
+  src: url(../public/fonts/fff-forward/FFFFORWA.TTF);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+.scene {
+  background-image: linear-gradient(
+      rgba(53, 54, 59, 0.1),
+      rgba(53, 54, 59, 0.1)
+    ),
+    url(../public/img/background/bg-16.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.menu {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  font-family: "primary";
+  color: white;
+  text-shadow: 5px 0 0 black, 0 -5px 0 black, 0 5px 0 black, -5px 0 0 black;
+  font-size: 60px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.button {
+  font-family: primary;
+  color: white;
+  text-shadow: 3px 0 0 black, 0 -3px 0 black, 0 3px 0 black, -3px 0 0 black;
+  font-size: 30px;
+
+  width: 60%;
+  padding: 10px;
+
+  background-color: #52a852;
+
+  border-top: 1px #52a852;
+  border-left: 1px #52a852;
+
+  border-color: #52a852;
+  border-right: 4px solid #003b00;
+  border-bottom: 6px solid #003b00;
+
+  box-shadow: -3px 0 0 0 black, 3px 0 0 0 black, 0 -3px 0 0 black,
+    0 3px 0 0 black;
+}
+
+.button:hover {
+  background-color: #84ee84;
+
+  border-top: 1px #84ee84;
+  border-left: 1px #84ee84;
+
+  border-color: #84ee84;
+  border-right: 4px solid #005a00;
+  border-bottom: 6px solid #005a00;
+}
+
+.button:active {
+  background-color: #84ee84;
+  transform: translateY(3px);
+  width: calc(60% - 2px);
+  border-right: 4px solid #005a00;
+  border-bottom: 5px solid #005a00;
+}
+
+.button {
+  margin-top: 50px;
+}
+
+@media (max-width: 900px) {
+  .menu,
+  .button {
+    width: 90%;
+  }
+
+  .button:active {
+    width: calc(90% - 2px);
+  }
+}
