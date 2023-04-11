@@ -9,6 +9,7 @@ Lashko:
 + player attack animation
 + monsters classes
 + dealing damage mechanic
++ player class
 
 
 TODO: 
