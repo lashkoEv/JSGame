@@ -69,12 +69,14 @@ export class Scene {
   }
 
   loadNewLevel() {
-    this.clearScene();
-    this.#createMonsters();
-    this.addMonstersToTheScene();
-    game.clear();
-    this.testObserverSubscribe();
-    this.testObserverBroadcast();
+    setTimeout(() => {
+      this.clearScene();
+      this.#createMonsters();
+      this.addMonstersToTheScene();
+      game.clear();
+      this.testObserverSubscribe();
+      this.testObserverBroadcast();
+    }, 5000);
   }
 
   clearScene() {
