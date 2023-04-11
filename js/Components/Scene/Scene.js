@@ -1,8 +1,10 @@
+import { Game } from "../Game/Game.js";
 import { Lizard } from "../Lizard/Lizard.js";
 import { Orc } from "../Orc/Orc.js";
 import { Player } from "../Player/Player.js";
 import { Slime } from "../Slime/Slime.js";
 
+const game = new Game();
 export class Scene {
   #player;
   #monsters;
@@ -99,25 +101,3 @@ export class Scene {
     }, 1000);
   }
 }
-
-class Game {
-  #callbacks;
-
-  constructor() {
-    this.#callbacks = [];
-  }
-
-  subscribe(callback) {
-    this.#callbacks.push(callback);
-  }
-
-  broadcast() {
-    this.#callbacks.forEach((callback) => callback());
-  }
-
-  clear() {
-    this.#callbacks = [];
-  }
-}
-
-const game = new Game();
