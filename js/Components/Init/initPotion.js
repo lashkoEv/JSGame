@@ -1,22 +1,20 @@
 export const initPotion = (player) => {
-  setInterval(() => {
-    if (player.score >= 1000) {
-      potion.src = "../../../public/img/potion/potion-active.png";
-    } else {
-      potion.src = "../../../public/img/potion/potion-inactive.png";
-    }
-  }, 1);
+  document.addEventListener("keydown", potionListener);
+};
 
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-      const isHealed = player.usePotion();
+export const removePotionListener = () => {
+  document.removeEventListener("keydown", potionListener);
+};
 
-      if (isHealed) {
-        const sound = new Audio();
-        sound.src = "../../../public/sounds/potion-sounds/potion.mp3";
-        sound.volume = 0.2;
-        sound.play();
-      }
+const potionListener = (event) => {
+  if (event.code === "Space") {
+    const isHealed = player.usePotion();
+
+    if (isHealed) {
+      const sound = new Audio();
+      sound.src = "../../../public/sounds/potion-sounds/potion.mp3";
+      sound.volume = 0.2;
+      sound.play();
     }
-  });
+  }
 };

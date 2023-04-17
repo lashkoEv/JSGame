@@ -9,14 +9,13 @@ export class Player {
     this.#hp = hp;
     this.#score = score;
     this.#damage = 5;
-    this.#init();
   }
 
   get damage() {
     return this.#damage;
   }
 
-  #init() {
+  init() {
     this.#changeHpBar();
     this.#changeScore();
   }
@@ -35,7 +34,7 @@ export class Player {
       this.#changeScore();
       return true;
     }
-    
+
     return false;
   }
 

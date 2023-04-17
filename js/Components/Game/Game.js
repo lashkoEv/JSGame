@@ -3,19 +3,20 @@ import { Lizard } from "../Lizard/Lizard.js";
 import { Orc } from "../Orc/Orc.js";
 import { Player } from "../Player/Player.js";
 import { Slime } from "../Slime/Slime.js";
-export class Scene {
+
+export class Game {
   #player;
   #monsters;
   #observer;
+  #intervals;
 
   constructor(player = new Player()) {
     this.#player = player;
     this.#monsters = [];
     this.#observer = new Observer();
+    this.#intervals = [];
 
     this.loadNewLevel();
-
-   
   }
 
   #createMonsters() {
@@ -65,6 +66,7 @@ export class Scene {
               clearInterval(interval);
             }
           }, 2000);
+          this.#intervals.push(interval);
         }.bind(this)
       );
     });
@@ -99,5 +101,13 @@ export class Scene {
         clearInterval(interval);
       }
     }, 1000);
+  }
+
+  clearObserver() {
+    this.#intervals.forEach((interval) => {
+      clearInterval(interval);
+    });
+
+    this.#observer.clear();
   }
 }

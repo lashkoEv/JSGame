@@ -22,19 +22,3 @@ export const initContextMenu = () => {
     }
   });
 };
-
-export const initButtons = (player, storage) => {
-    saveButton.addEventListener("click", () => {
-        storage.save(player);
-    });
-
-    saveAndBackButton.addEventListener("click", () => {
-        storage.save(player);
-        // backToMainMenu();
-    });
-
-    backButton.addEventListener("click", () => {
-        // storage.save(player);
-        // backToMainMenu();
-    });
-}

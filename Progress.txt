@@ -26,27 +26,19 @@ Lashko:
     * save progress
     * save progress and back to main menu
     * back to main menu without saving
++ make the scene and all windows created through JS
++ main menu js (buttons handlers)
++ context menu js (buttons handlers)
 
 prototype: 
 + levels mechanic
+
 
 
 TODO: 
 - create modal windows + mechanic:
     - player won
     - player lost
-- main menu js (buttons handlers)
-- context menu js (buttons handlers)
-- redo prototypes
 
 finally:
-- make the scene and all windows created through JS
-- monsters death animation (mb change gif)
 - clean code (especially css)
-
-
-
-maybe:
-? storytelling ?
-? change Observer to clean the scene / super attack ?
-
