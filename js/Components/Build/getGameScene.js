@@ -7,6 +7,7 @@ import { Player } from "../Player/Player.js";
 import { Storage } from "../Storage/Storage.js";
 import { createElement } from "./createElement.js";
 import { getMainMenu } from "./getMainMenu.js";
+import { clearWindow } from "./clearWindow.js";
 
 export const getGameScene = (isLoad) => {
   const storage = new Storage();
@@ -18,14 +19,95 @@ export const getGameScene = (isLoad) => {
     player = new Player();
   }
 
-  const app = document.getElementById("app");
+  clearWindow();
 
-  while (app.firstChild) {
-    app.removeChild(app.firstChild);
-  }
   const scene = createElement("div", ["scene"]);
   app.append(scene);
 
+  initPlayerInfo(scene);
+  initSoundBtn(scene);
+  initPlayingElements(scene);
+
+  const intervalId = checkPotion(player);
+  const game = new Game(player);
+
+  initContextMenuElement(scene, intervalId, game, storage, player);
+  player.init();
+  initListeners(player);
+};
+
+const initContextMenuElement = (scene, intervalId, game, storage, player) => {
+  const contextMenu = createElement("div", ["modal"]);
+  contextMenu.id = "menuModal";
+  scene.append(contextMenu);
+
+  const menuContent = createElement("div", ["modal__content"]);
+  contextMenu.append(menuContent);
+
+  const close = createElement("img", ["close"]);
+  close.id = "close";
+  close.src = "../../../public/img/icons/close.png";
+  menuContent.append(close);
+
+  const saveButton = createElement("button", ["button"]);
+  saveButton.textContent = "SAVE";
+  saveButton.addEventListener("click", () => {
+    storage.save(player);
+  });
+  menuContent.append(saveButton);
+
+  const saveAndBackButton = createElement("button", ["button"]);
+  saveAndBackButton.textContent = "SAVE AND BACK TO MENU";
+  saveAndBackButton.addEventListener("click", () => {
+    storage.save(player);
+    removePlayingScene(game, intervalId);
+  });
+  menuContent.append(saveAndBackButton);
+
+  const backButton = createElement("button", ["button"]);
+  backButton.textContent = "BACK TO MENU";
+  backButton.addEventListener("click", () => {
+    removePlayingScene(game, intervalId);
+  });
+  menuContent.append(backButton);
+};
+
+const removePlayingScene = (game, intervalId) => {
+  game.clearObserver();
+  clearInterval(intervalId);
+  removeSwordListeners();
+  removePotionListener();
+  getMainMenu();
+};
+
+const initPlayingElements = (scene) => {
+  const playingField = createElement("div", ["playing-field"]);
+  playingField.id = "playingField";
+  scene.append(playingField);
+
+  const sword = createElement("img", ["sword"]);
+  sword.id = "sword";
+  sword.src = "../../../public/img/player/sword5.png";
+  scene.append(sword);
+
+  const potion = createElement("img", ["potion"]);
+  potion.id = "potion";
+  potion.src = "../../../public/img/potion/potion-inactive.png";
+  scene.append(potion);
+};
+
+const initSoundBtn = (scene) => {
+  const soundBtn = createElement("button", ["sound-button"]);
+  scene.append(soundBtn);
+
+  const soundImg = createElement("img", ["sound-img"]);
+  soundImg.src = "../../../public/img/icons/sound-off-2.png";
+  soundBtn.append(soundImg);
+
+  initSound(soundBtn, soundImg);
+};
+
+const initPlayerInfo = (scene) => {
   const playerInfo = createElement("div", ["player-info"]);
   scene.append(playerInfo);
 
@@ -51,85 +133,11 @@ export const getGameScene = (isLoad) => {
   const scoreImg = createElement("img", ["score__img"]);
   scoreImg.src = "../../../public/img/rewards/reward-simple.png";
   playerScore.append(scoreImg);
-
-  const soundBtn = createElement("button", ["sound-button"]);
-  scene.append(soundBtn);
-
-  const soundImg = createElement("img", ["sound-img"]);
-  soundImg.src = "../../../public/img/icons/sound-off-2.png";
-  soundBtn.append(soundImg);
-
-  const playingField = createElement("div", ["playing-field"]);
-  playingField.id = "playingField";
-  scene.append(playingField);
-
-  const sword = createElement("img", ["sword"]);
-  sword.id = "sword";
-  sword.src = "../../../public/img/player/sword5.png";
-  scene.append(sword);
-
-  const potion = createElement("img", ["potion"]);
-  potion.id = "potion";
-  potion.src = "../../../public/img/potion/potion-inactive.png";
-  scene.append(potion);
-
-  const intervalId = checkPotion(player);
-
-  const game = new Game(player);
-
-  const contextMenu = createElement("div", ["modal"]);
-  contextMenu.id = "menuModal";
-  scene.append(contextMenu);
-
-  const menuContent = createElement("div", ["modal__content"]);
-  contextMenu.append(menuContent);
-
-  const close = createElement("img", ["close"]);
-  close.id = "close";
-  close.src = "../../../public/img/icons/close.png";
-  menuContent.append(close);
-
-  const saveButton = createElement("button", ["button"]);
-  saveButton.textContent = "SAVE";
-  saveButton.addEventListener("click", () => {
-    storage.save(player);
-  });
-  menuContent.append(saveButton);
-
-  const saveAndBackButton = createElement("button", ["button"]);
-  saveAndBackButton.textContent = "SAVE AND BACK TO MENU";
-  saveAndBackButton.addEventListener("click", () => {
-    game.clearObserver();
-    storage.save(player);
-    clearInterval(intervalId);
-    removeSwordListeners();
-    removePotionListener();
-    getMainMenu();
-  });
-  menuContent.append(saveAndBackButton);
-
-  const backButton = createElement("button", ["button"]);
-  backButton.textContent = "BACK TO MENU";
-  backButton.addEventListener("click", () => {
-    game.clearObserver();
-    clearInterval(intervalId);
-    removeSwordListeners();
-    removePotionListener();
-    getMainMenu();
-  });
-  menuContent.append(backButton);
-
-  initSound(soundBtn, soundImg);
-
-  init(player);
 };
 
-const init = (player) => {
-  player.init();
-
+const initListeners = (player) => {
   initSwordListeners();
   initContextMenu();
-
   initPotion(player);
 };
 

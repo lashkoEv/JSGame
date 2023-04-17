@@ -1,12 +1,13 @@
 import { initSound } from "../Init/initSound.js";
+import { clearWindow } from "./clearWindow.js";
 import { createElement } from "./createElement.js";
 import { getGameScene } from "./getGameScene.js";
 
 export const getMainMenu = () => {
+    clearWindow();
+
     const app = document.getElementById("app");
-    while (app.firstChild) {
-        app.removeChild(app.firstChild);
-      }
+    
     const scene = createElement("div", ["scene-menu"]);
     app.append(scene);
   
