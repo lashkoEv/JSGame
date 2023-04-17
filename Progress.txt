@@ -20,6 +20,7 @@ Lashko:
 + add rewards animation 
 + rewards mechanic
 + mechanics of restoring hp for score points (press Space)
++ save and load progress (score and hp)
 
 prototype: 
 + levels mechanic
@@ -34,7 +35,6 @@ TODO:
         * save progress and back to main menu
         * back to main menu without saving
         * settings
-- save progress (score and hp)
 - main menu js (buttons handlers)
 - redo prototypes
 - change sound button ( don't like it :| )
