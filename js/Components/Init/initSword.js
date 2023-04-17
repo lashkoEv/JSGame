@@ -21,7 +21,7 @@ export const initSwordAnimation = () => {
 export const initSwordSound = () => {
   document.addEventListener("click", () => {
     const swordSound = new Audio();
-    swordSound.src = "../public/sounds/sword-sounds/sword-1.mp3";
+    swordSound.src = "../../../public/sounds/sword-sounds/sword-1.mp3";
     swordSound.volume = 0.1;
     swordSound.play();
   });

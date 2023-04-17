@@ -14,6 +14,8 @@ export class Scene {
     this.#observer = new Observer();
 
     this.loadNewLevel();
+
+   
   }
 
   #createMonsters() {

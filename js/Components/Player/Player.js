@@ -1,5 +1,5 @@
 export class Player {
-  static HP = 1000;
+  static HP = 500;
 
   #hp;
   #score;
@@ -17,14 +17,34 @@ export class Player {
   }
 
   #init() {
-    score.textContent = this.#score;
-    playerHp.style.width = (100 * this.#hp) / Player.HP + "%";
+    this.#changeHpBar();
+    this.#changeScore();
   }
 
   set hp(inputDamage) {
     this.#hp -= inputDamage;
 
+    this.#changeHpBar();
+  }
+
+  usePotion() {
+    if (this.#score >= 1000) {
+      this.#hp = Player.HP;
+      this.#changeHpBar();
+      this.#score -= 1000;
+      this.#changeScore();
+      return true;
+    }
+    
+    return false;
+  }
+
+  #changeHpBar() {
     playerHp.style.width = (100 * this.#hp) / Player.HP + "%";
+  }
+
+  #changeScore() {
+    score.textContent = this.#score;
   }
 
   get hp() {
@@ -34,7 +54,7 @@ export class Player {
   set score(rewardValue) {
     this.#score += rewardValue;
 
-    score.textContent = this.#score;
+    this.#changeScore();
   }
 
   get score() {

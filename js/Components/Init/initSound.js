@@ -1,6 +1,6 @@
 export const initSound = () => {
   const mainAudio = new Audio();
-  mainAudio.src = "../public/sounds/main-theme/main-3.mp3";
+  mainAudio.src = "../../../public/sounds/main-theme/main-3.mp3";
   mainAudio.loop = true;
   mainAudio.volume = 0.2;
 

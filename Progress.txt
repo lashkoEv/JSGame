@@ -19,6 +19,7 @@ Lashko:
 + add potion img 
 + add rewards animation 
 + rewards mechanic
++ mechanics of restoring hp for score points (press Space)
 
 prototype: 
 + levels mechanic
