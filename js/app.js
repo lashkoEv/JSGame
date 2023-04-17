@@ -1,3 +1,4 @@
+import { initContextMenu, initButtons } from "./Components/Init/initContextMenu.js";
 import { initPotion } from "./Components/Init/initPotion.js";
 import { initSound } from "./Components/Init/initSound.js";
 import {
@@ -11,6 +12,7 @@ import { Storage } from "./Components/Storage/Storage.js";
 
 const app = () => {
   const storage = new Storage();
+  const player = storage.load();
 
   initSwordMovement();
   initSwordAnimation();
@@ -18,17 +20,13 @@ const app = () => {
 
   initSound();
 
-  const player = storage.load();
+  initContextMenu();
+  initButtons(player,storage);
+
 
   initPotion(player);
   
   const scene = new Scene(player);
-
-  setTimeout(() => {
-    storage.save(player);
-    alert("save");
-  }, 20000);
 };
 
 app();
-

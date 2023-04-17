@@ -6,11 +6,11 @@ export const initSound = () => {
 
   sound.addEventListener("click", () => {
     if (mainAudio.paused) {
-      soundImg.src = "./public/img/icons/sound-on.png";
+      soundImg.src = "./public/img/icons/sound-on-2.png";
       mainAudio.play();
     } else {
       mainAudio.pause();
-      soundImg.src = "./public/img/icons/sound-off.png";
+      soundImg.src = "./public/img/icons/sound-off-2.png";
     }
   });
 };

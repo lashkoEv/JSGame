@@ -10,6 +10,11 @@
   user-select: none;
 }
 
+a {
+  text-decoration: none;
+  text-align: center;
+}
+
 body {
   overflow: hidden;
 }

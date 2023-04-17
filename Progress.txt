@@ -21,6 +21,11 @@ Lashko:
 + rewards mechanic
 + mechanics of restoring hp for score points (press Space)
 + save and load progress (score and hp)
++ change sound button ( don't like it :| )
++ context menu will player click ESC: 
+    * save progress
+    * save progress and back to main menu
+    * back to main menu without saving
 
 prototype: 
 + levels mechanic
@@ -30,14 +35,9 @@ TODO:
 - create modal windows + mechanic:
     - player won
     - player lost
-    - menu will player click ESC: 
-        * save progress
-        * save progress and back to main menu
-        * back to main menu without saving
-        * settings
 - main menu js (buttons handlers)
+- context menu js (buttons handlers)
 - redo prototypes
-- change sound button ( don't like it :| )
 
 finally:
 - make the scene and all windows created through JS

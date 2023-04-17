@@ -6,11 +6,11 @@ const initSoundMainMenu = () => {
   
     soundMain.addEventListener("click", () => {
       if (mainAudio.paused) {
-        soundImgMain.src = "../public/img/icons/sound-on.png";
+        soundImgMain.src = "../public/img/icons/sound-on-2.png";
         mainAudio.play();
       } else {
         mainAudio.pause();
-        soundImgMain.src = "../public/img/icons/sound-off.png";
+        soundImgMain.src = "../public/img/icons/sound-off-2.png";
       }
     });
   };
