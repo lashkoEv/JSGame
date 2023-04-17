@@ -7,12 +7,15 @@ export class Monster {
   #hpDiv;
   #image;
   #isDead;
+  #interval;
+  #speed;
 
-  constructor(hp, damage, image, reward) {
+  constructor(hp, damage, image, reward, speed) {
     this.#hp = hp;
     this.#damage = damage;
     this.#reward = reward;
     this.#isDead = false;
+    this.#speed = speed;
 
     this.#monsterWrapper = document.createElement("div");
     this.#monsterWrapper.classList.add("monster-wrapper");
@@ -29,6 +32,23 @@ export class Monster {
     this.#image.classList.add("monster");
     this.#image.src = image;
     this.#monsterWrapper.append(this.#image);
+
+    // this.#interval = this.#animate();
+  }
+
+  #animate() {
+    return setInterval(() => {
+      this.#monsterWrapper.animate(
+        [
+          { transform: "translateY(0)" },
+          { transform: "translateY(-40px)" },
+          { transform: "translateY(0)" },
+          { transform: "translateY(40px)" },
+          { transform: "translateY(0)" },
+        ],
+        this.#speed
+      );
+    }, this.#speed);
   }
 
   get hp() {
@@ -61,6 +81,7 @@ export class Monster {
 
   die() {
     this.#isDead = true;
+    clearInterval(this.#interval);
   }
 
   get isDead() {

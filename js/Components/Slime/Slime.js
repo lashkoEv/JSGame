@@ -4,13 +4,14 @@ import { Reward } from "../Reward/Reward.js";
 export class Slime extends Monster {
   static HP = 20;
   static DAMAGE = 1;
+  static SPEED = 4000;
   static REWARD_VALUE = 100;
   static REWARD_IMG = "../../.././public/img/rewards/reward-simple.png";
   static IMAGE = "./public/img/monsters/monster-1.gif";
 
   constructor() {
     const reward = new Reward(Slime.REWARD_VALUE, Slime.REWARD_IMG);
-    super(Slime.HP, Slime.DAMAGE, Slime.IMAGE, reward);
+    super(Slime.HP, Slime.DAMAGE, Slime.IMAGE, reward, Slime.SPEED);
     this.monsterWrapper.style.width = "13%";
 
     this.image.addEventListener("click", () => {
