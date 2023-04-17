@@ -9,7 +9,7 @@ export const initSound = (button, img) => {
   } else {
     img.src = "../public/img/icons/sound-on-2.png";
   }
-  
+
   button.addEventListener("click", () => {
     if (mainAudio.paused) {
       img.src = "../public/img/icons/sound-on-2.png";

@@ -25,7 +25,7 @@ export const initSwordListeners = () => {
   document.addEventListener("mousemove", swordMovement);
   document.addEventListener("click", swordAnimation);
   document.addEventListener("click", swordSound);
-}
+};
 
 export const removeSwordListeners = () => {
   document.removeEventListener("click", swordAnimation);

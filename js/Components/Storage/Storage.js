@@ -7,10 +7,10 @@ export class Storage {
   }
 
   load() {
-    if(localStorage.getItem("hp") && localStorage.getItem("score")) {
-        const hp = +localStorage.getItem("hp");
-        const score = +localStorage.getItem("score");
-        return new Player(hp, score);
+    if (localStorage.getItem("hp") && localStorage.getItem("score")) {
+      const hp = +localStorage.getItem("hp");
+      const score = +localStorage.getItem("score");
+      return new Player(hp, score);
     }
 
     return new Player();

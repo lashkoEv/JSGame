@@ -18,7 +18,7 @@ export class Game {
     this.#intervals = [];
 
     this.loadNewLevel();
-    this.checkHp();
+    this.#checkHp();
   }
 
   #createMonsters() {
@@ -41,13 +41,13 @@ export class Game {
     }
   }
 
-  addMonstersToTheScene() {
+  #addMonstersToTheScene() {
     this.#monsters.forEach((monster) => {
       playingField.append(monster.monsterWrapper);
     });
   }
 
-  clearScene() {
+  #clearScene() {
     const deadMonsters = document.getElementsByClassName("monster-wrapper");
 
     while (deadMonsters.length !== 0) {
@@ -55,7 +55,7 @@ export class Game {
     }
   }
 
-  loadGame() {
+  #loadGame() {
     this.#monsters.forEach((monster) => {
       this.#observer.subscribe(
         function () {
@@ -74,7 +74,7 @@ export class Game {
     });
   }
 
-  checkDeadMonsters() {
+  #checkDeadMonsters() {
     this.#monsters = this.#monsters.filter((monster) => {
       if (!monster.isDead) {
         return monster;
@@ -83,30 +83,30 @@ export class Game {
   }
 
   loadNewLevel() {
-    this.clearScene();
+    this.#clearScene();
     this.#createMonsters();
-    this.addMonstersToTheScene();
+    this.#addMonstersToTheScene();
     this.#observer.clear();
-    this.loadGame();
+    this.#loadGame();
     this.#observer.broadcast();
-    this.checkLevel();
+    this.#checkLevel();
   }
 
-  checkLevel() {
+  #checkLevel() {
     const interval = setInterval(() => {
-      this.checkDeadMonsters();
+      this.#checkDeadMonsters();
 
       if (this.#monsters.length <= 0) {
-        this.win();
+        this.#win();
         clearInterval(interval);
       }
     }, 1);
   }
 
-  checkHp() {
+  #checkHp() {
     const interval = setInterval(() => {
       if (this.#player.hp <= 0) {
-        this.lost();
+        this.#lost();
         clearInterval(interval);
       }
     }, 1);
@@ -120,11 +120,11 @@ export class Game {
     this.#observer.clear();
   }
 
-  win() {
+  #win() {
     winModal.style.display = "block";
   }
 
-  lost() {
+  #lost() {
     lostModal.style.display = "block";
   }
 }

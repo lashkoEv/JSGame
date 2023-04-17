@@ -1,5 +1,7 @@
 export const initPotion = (player) => {
-  document.addEventListener("keydown", () => {potionListener(event, player)});
+  document.addEventListener("keydown", () => {
+    potionListener(event, player);
+  });
 };
 
 export const removePotionListener = () => {
@@ -7,8 +9,6 @@ export const removePotionListener = () => {
 };
 
 const potionListener = (event, player) => {
-  console.log(event);
-  console.log(player);
   if (event.code === "Space") {
     const isHealed = player.usePotion();
 

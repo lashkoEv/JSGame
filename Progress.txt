@@ -34,6 +34,6 @@ Lashko:
     + player won
     + player lost
 
-
-finally:
-- clean code (especially css)
+mb: 
+? add sound - win, lost
+? new mechanic, mb super attack
