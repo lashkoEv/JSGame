@@ -22,6 +22,7 @@ export const getGameScene = (isLoad) => {
   clearWindow();
 
   const scene = createElement("div", ["scene"]);
+  scene.id = "scene";
   app.append(scene);
 
   initPlayerInfo(scene);
@@ -34,6 +35,9 @@ export const getGameScene = (isLoad) => {
   initContextMenuElement(scene, intervalId, game, storage, player);
   player.init();
   initListeners(player);
+
+  initWinModal(scene, intervalId, game, storage, player);
+  initLostModal(scene, intervalId, game);
 };
 
 const initContextMenuElement = (scene, intervalId, game, storage, player) => {
@@ -149,4 +153,63 @@ const checkPotion = (player) => {
       potion.src = "../../../public/img/potion/potion-inactive.png";
     }
   }, 1);
+};
+
+const initWinModal = (scene, intervalId, game, storage, player) => {
+  const winModal = createElement("div", ["modal"]);
+  winModal.id = "winModal";
+  scene.append(winModal);
+
+  const winContent = createElement("div", ["modal__content"]);
+  winModal.append(winContent);
+
+  const winTitle = createElement("div", ["title"]);
+  winTitle.textContent = "YOU WIN!";
+  winContent.append(winTitle);
+
+  const nextLvl = createElement("button", ["button"]);
+  nextLvl.textContent = "GO TO THE NEXT LEVEL!";
+  nextLvl.addEventListener("click", () => {
+    game.loadNewLevel();
+    winModal.style.display = "none";
+  });
+  winContent.append(nextLvl);
+
+  const saveAndBackToMenu = createElement("button", ["button"]);
+  saveAndBackToMenu.textContent = "SAVE AND BACK TO MENU";
+  saveAndBackToMenu.addEventListener("click", () => {
+    storage.save(player);
+    winModal.style.display = "none";
+    removePlayingScene(game, intervalId);
+  });
+  winContent.append(saveAndBackToMenu);
+
+  const backToMenu = createElement("button", ["button"]);
+  backToMenu.textContent = "BACK TO MENU";
+  backToMenu.addEventListener("click", () => {
+    winModal.style.display = "none";
+    removePlayingScene(game, intervalId);
+  });
+  winContent.append(backToMenu);
+};
+
+const initLostModal = (scene, intervalId, game) => {
+  const lostModal = createElement("div", ["modal"]);
+  lostModal.id = "lostModal";
+  scene.append(lostModal);
+
+  const lostContent = createElement("div", ["modal__content"]);
+  lostModal.append(lostContent);
+
+  const lostTitle = createElement("div", ["title"]);
+  lostTitle.textContent = "YOU LOST!";
+  lostContent.append(lostTitle);
+
+  const backToMenu = createElement("button", ["button"]);
+  backToMenu.textContent = "BACK TO MENU";
+  backToMenu.addEventListener("click", () => {
+    lostModal.style.display = "none";
+    removePlayingScene(game, intervalId);
+  });
+  lostContent.append(backToMenu);
 };

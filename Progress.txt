@@ -29,16 +29,11 @@ Lashko:
 + make the scene and all windows created through JS
 + main menu js (buttons handlers)
 + context menu js (buttons handlers)
-
-prototype: 
 + levels mechanic
++ create modal windows + mechanic:
+    + player won
+    + player lost
 
-
-
-TODO: 
-- create modal windows + mechanic:
-    - player won
-    - player lost
 
 finally:
 - clean code (especially css)

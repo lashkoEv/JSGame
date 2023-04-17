@@ -4,7 +4,7 @@ export class Reward {
 
   constructor(value, src) {
     this.#value = value;
-    
+
     this.#img = document.createElement("img");
     this.#img.src = src;
     this.#img.classList.add("reward");
@@ -30,6 +30,6 @@ export class Reward {
     );
     setTimeout(() => {
       this.#img.remove();
-    }, 2000);
+    }, 1950);
   }
 }

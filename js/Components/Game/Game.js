@@ -3,6 +3,7 @@ import { Lizard } from "../Lizard/Lizard.js";
 import { Orc } from "../Orc/Orc.js";
 import { Player } from "../Player/Player.js";
 import { Slime } from "../Slime/Slime.js";
+import { createElement } from "../Build/createElement.js";
 
 export class Game {
   #player;
@@ -17,6 +18,7 @@ export class Game {
     this.#intervals = [];
 
     this.loadNewLevel();
+    this.checkHp();
   }
 
   #createMonsters() {
@@ -81,15 +83,13 @@ export class Game {
   }
 
   loadNewLevel() {
-    setTimeout(() => {
-      this.clearScene();
-      this.#createMonsters();
-      this.addMonstersToTheScene();
-      this.#observer.clear();
-      this.loadGame();
-      this.#observer.broadcast();
-      this.checkLevel();
-    }, 5000);
+    this.clearScene();
+    this.#createMonsters();
+    this.addMonstersToTheScene();
+    this.#observer.clear();
+    this.loadGame();
+    this.#observer.broadcast();
+    this.checkLevel();
   }
 
   checkLevel() {
@@ -97,10 +97,19 @@ export class Game {
       this.checkDeadMonsters();
 
       if (this.#monsters.length <= 0) {
-        this.loadNewLevel();
+        this.win();
         clearInterval(interval);
       }
-    }, 1000);
+    }, 1);
+  }
+
+  checkHp() {
+    const interval = setInterval(() => {
+      if (this.#player.hp <= 0) {
+        this.lost();
+        clearInterval(interval);
+      }
+    }, 1);
   }
 
   clearObserver() {
@@ -109,5 +118,13 @@ export class Game {
     });
 
     this.#observer.clear();
+  }
+
+  win() {
+    winModal.style.display = "block";
+  }
+
+  lost() {
+    lostModal.style.display = "block";
   }
 }
