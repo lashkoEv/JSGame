@@ -95,7 +95,6 @@ body {
 
 .reward {
   width: 40px;
-  animation: rewards 0.5s ease-in-out;
 }
 
 .player-info {
@@ -129,15 +128,17 @@ body {
   width: 80%;
 }
 
+.potion {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  cursor: pointer;
+}
+
 .sword {
   position: absolute;
   bottom: -40px;
-
-  display: flex;
-  align-items: end;
-}
-
-.sword__img {
   width: 120px;
 }
 
@@ -154,50 +155,4 @@ body {
 
 .sound-img {
   width: 100%;
-}
-
-@keyframes rewards {
-  0% {
-    transform: translateY(-40px);
-  }
-
-  10% {
-    transform: translateY(-36px);
-  }
-
-  20% {
-    transform: translateY(-32px);
-  }
-
-  30% {
-    transform: translateY(-28px);
-  }
-
-  40% {
-    transform: translateY(-24px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-
-  60% {
-    transform: translateY(-16px);
-  }
-
-  70% {
-    transform: translateY(-12px);
-  }
-
-  80% {
-    transform: translateY(-8px);
-  }
-
-  90% {
-    transform: translateY(-4px);
-  }
-
-  100% {
-    transform: translateY(0, 0);
-  }
 }

@@ -1,14 +1,18 @@
 export class Monster {
   #hp;
   #damage;
+  #reward;
 
   #monsterWrapper;
   #hpDiv;
   #image;
+  #isDead;
 
-  constructor(hp, damage, image) {
+  constructor(hp, damage, image, reward) {
     this.#hp = hp;
     this.#damage = damage;
+    this.#reward = reward;
+    this.#isDead = false;
 
     this.#monsterWrapper = document.createElement("div");
     this.#monsterWrapper.classList.add("monster-wrapper");
@@ -49,5 +53,27 @@ export class Monster {
 
   get image() {
     return this.#image;
+  }
+
+  get reward() {
+    return this.#reward.value;
+  }
+
+  die() {
+    this.#isDead = true;
+  }
+
+  get isDead() {
+    return this.#isDead;
+  }
+
+  checkHp() {
+    if (this.#hp <= 0) {
+      this.#image.remove();
+      this.#hpDiv.parentElement.style.visibility = "hidden";
+
+      this.monsterWrapper.append(this.#reward.img);
+      this.#reward.show();
+    }
   }
 }

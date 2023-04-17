@@ -9,10 +9,16 @@ export class Player {
     this.#hp = hp;
     this.#score = score;
     this.#damage = 5;
+    this.#init();
   }
 
   get damage() {
     return this.#damage;
+  }
+
+  #init() {
+    score.textContent = this.#score;
+    playerHp.style.width = (100 * this.#hp) / Player.HP + "%";
   }
 
   set hp(inputDamage) {
@@ -27,6 +33,8 @@ export class Player {
 
   set score(rewardValue) {
     this.#score += rewardValue;
+
+    score.textContent = this.#score;
   }
 
   get score() {

@@ -12,13 +12,16 @@ Lashko:
 + player class
 + add punch sound
 + main menu window
-
-prototype: 
++ main menu sound
++ Observer - dealing damage
 + receiving damage mechanic
 + scene class
-+ levels mechanic
-+ Observer - dealing damage
++ add potion img 
++ add rewards animation 
++ rewards mechanic
 
+prototype: 
++ levels mechanic
 
 
 TODO: 
@@ -29,14 +32,20 @@ TODO:
         * save progress
         * save progress and back to main menu
         * back to main menu without saving
-- rewards mechanic (change score)
+        * settings
 - save progress (score and hp)
-- main menu js (button handlers)
+- main menu js (buttons handlers)
 - redo prototypes
+- change sound button ( don't like it :| )
+
+finally:
+- make the scene and all windows created through JS
+- monsters death animation (mb change gif)
+- clean code (especially css)
 
 
 
-Features for later?
-- mb storytelling?
-- change Observer to clean the scene / super attack?
+maybe:
+? storytelling ?
+? change Observer to clean the scene / super attack ?
 

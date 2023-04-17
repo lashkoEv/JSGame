@@ -1,29 +1,19 @@
-import { Game } from "../Game/Game.js";
+import { Observer } from "../Observer/Observer.js";
 import { Lizard } from "../Lizard/Lizard.js";
 import { Orc } from "../Orc/Orc.js";
 import { Player } from "../Player/Player.js";
 import { Slime } from "../Slime/Slime.js";
-
-const game = new Game();
 export class Scene {
   #player;
   #monsters;
+  #observer;
 
   constructor(player = new Player()) {
     this.#player = player;
     this.#monsters = [];
+    this.#observer = new Observer();
 
-    this.#setPlayerStats();
-    this.#createMonsters();
-    this.addMonstersToTheScene();
-    this.testObserverSubscribe();
-    this.testObserverBroadcast();
-  }
-
-  #setPlayerStats() {
-    score.textContent = this.#player.score;
-
-    playerHp.style.width = (100 * this.#player.hp) / Player.HP + "%";
+    this.loadNewLevel();
   }
 
   #createMonsters() {
@@ -52,19 +42,35 @@ export class Scene {
     });
   }
 
-  testObserverSubscribe() {
+  clearScene() {
+    const deadMonsters = document.getElementsByClassName("monster-wrapper");
+
+    while (deadMonsters.length !== 0) {
+      playingField.removeChild(playingField.lastChild);
+    }
+  }
+
+  loadGame() {
     this.#monsters.forEach((monster) => {
-      game.subscribe(
+      this.#observer.subscribe(
         function () {
-          this.#player.hp = monster.damage;
+          const interval = setInterval(() => {
+            this.#player.hp = monster.damage;
+
+            if (monster.hp <= 0) {
+              this.#player.score = monster.reward;
+              monster.die();
+              clearInterval(interval);
+            }
+          }, 2000);
         }.bind(this)
       );
     });
   }
 
-  test() {
+  checkDeadMonsters() {
     this.#monsters = this.#monsters.filter((monster) => {
-      if (monster.monsterWrapper.style.visibility !== "hidden") {
+      if (!monster.isDead) {
         return monster;
       }
     });
@@ -75,24 +81,16 @@ export class Scene {
       this.clearScene();
       this.#createMonsters();
       this.addMonstersToTheScene();
-      game.clear();
-      this.testObserverSubscribe();
-      this.testObserverBroadcast();
+      this.#observer.clear();
+      this.loadGame();
+      this.#observer.broadcast();
+      this.checkLevel();
     }, 5000);
   }
 
-  clearScene() {
-    const deadMonsters = document.getElementsByClassName("monster-wrapper");
-
-    while (deadMonsters.length !== 0) {
-      playingField.removeChild(playingField.lastChild);
-    }
-  }
-
-  testObserverBroadcast() {
+  checkLevel() {
     const interval = setInterval(() => {
-      this.test();
-      game.broadcast();
+      this.checkDeadMonsters();
 
       if (this.#monsters.length <= 0) {
         this.loadNewLevel();
