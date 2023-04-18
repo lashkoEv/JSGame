@@ -3,7 +3,6 @@ import { Lizard } from "../Lizard/Lizard.js";
 import { Orc } from "../Orc/Orc.js";
 import { Player } from "../Player/Player.js";
 import { Slime } from "../Slime/Slime.js";
-import { createElement } from "../Build/createElement.js";
 
 export class Game {
   #player;
@@ -122,9 +121,17 @@ export class Game {
 
   #win() {
     winModal.style.display = "block";
+    const audio = new Audio();
+    audio.src = "../../../public/sounds/lvl-sounds/win.mp3";
+    audio.volume = 0.3;
+    audio.play();
   }
 
   #lost() {
     lostModal.style.display = "block";
+    const audio = new Audio();
+    audio.src = "../../../public/sounds/lvl-sounds/lost-2.mp3";
+    audio.volume = 0.3;
+    audio.play();
   }
 }

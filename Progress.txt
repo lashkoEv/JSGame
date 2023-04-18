@@ -33,7 +33,7 @@ Lashko:
 + create modal windows + mechanic:
     + player won
     + player lost
++ add sound - win, lost
 
 mb: 
-? add sound - win, lost
 ? new mechanic, mb super attack
