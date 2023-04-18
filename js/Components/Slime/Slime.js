@@ -4,18 +4,17 @@ import { Reward } from "../Reward/Reward.js";
 export class Slime extends Monster {
   static HP = 20;
   static DAMAGE = 1;
-  static SPEED = 4000;
   static REWARD_VALUE = 100;
   static REWARD_IMG = "../../.././public/img/rewards/reward-simple.png";
   static IMAGE = "./public/img/monsters/monster-1.gif";
 
-  constructor() {
+  constructor(inputDamage) {
     const reward = new Reward(Slime.REWARD_VALUE, Slime.REWARD_IMG);
-    super(Slime.HP, Slime.DAMAGE, Slime.IMAGE, reward, Slime.SPEED);
+    super(Slime.HP, Slime.DAMAGE, Slime.IMAGE, reward);
     this.monsterWrapper.style.width = "13%";
 
     this.image.addEventListener("click", () => {
-      this.#takeDamage(5);
+      this.#takeDamage(inputDamage);
       this.checkHp();
     });
   }
@@ -24,5 +23,9 @@ export class Slime extends Monster {
     this.hp = inputDamage;
 
     this.hpDiv.style.width = (100 * this.hp) / Slime.HP + "%";
+  }
+
+  takeSuperAttack(superDamage) {
+    this.#takeDamage(superDamage);
   }
 }

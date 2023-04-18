@@ -4,15 +4,21 @@ export class Player {
   #hp;
   #score;
   #damage;
+  #superDamage;
 
   constructor(hp = Player.HP, score = 0) {
     this.#hp = hp;
     this.#score = score;
     this.#damage = 5;
+    this.#superDamage = 10;
   }
 
   get damage() {
     return this.#damage;
+  }
+
+  get superDamage() {
+    return this.#superDamage;
   }
 
   init() {
@@ -31,6 +37,16 @@ export class Player {
       this.#hp = Player.HP;
       this.#changeHpBar();
       this.#score -= 1000;
+      this.#changeScore();
+      return true;
+    }
+
+    return false;
+  }
+
+  superAttack() {
+    if(this.#score >= 500) {
+      this.#score -= 500;
       this.#changeScore();
       return true;
     }

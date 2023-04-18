@@ -8,6 +8,10 @@ import { Storage } from "../Storage/Storage.js";
 import { createElement } from "./createElement.js";
 import { getMainMenu } from "./getMainMenu.js";
 import { clearWindow } from "./clearWindow.js";
+import {
+  initSuperAttackListener,
+  removeSuperAttackListener,
+} from "../Init/initSuperAttackBtn.js";
 
 export const getGameScene = (isLoad) => {
   const storage = new Storage();
@@ -30,17 +34,32 @@ export const getGameScene = (isLoad) => {
   initPlayingElements(scene);
 
   const intervalId = checkPotion(player);
+  const intervalIdSA = checkSuperAttack(player);
   const game = new Game(player);
 
-  initContextMenuElement(scene, intervalId, game, storage, player);
+  initContextMenuElement(
+    scene,
+    intervalId,
+    game,
+    storage,
+    player,
+    intervalIdSA
+  );
   player.init();
-  initListeners(player);
+  initListeners(player, game);
 
-  initWinModal(scene, intervalId, game, storage, player);
-  initLostModal(scene, intervalId, game);
+  initWinModal(scene, intervalId, game, storage, player, intervalIdSA);
+  initLostModal(scene, intervalId, game, intervalIdSA);
 };
 
-const initContextMenuElement = (scene, intervalId, game, storage, player) => {
+const initContextMenuElement = (
+  scene,
+  intervalId,
+  game,
+  storage,
+  player,
+  intervalIdSA
+) => {
   const contextMenu = createElement("div", ["modal"]);
   contextMenu.id = "menuModal";
   scene.append(contextMenu);
@@ -64,23 +83,25 @@ const initContextMenuElement = (scene, intervalId, game, storage, player) => {
   saveAndBackButton.textContent = "SAVE AND BACK TO MENU";
   saveAndBackButton.addEventListener("click", () => {
     storage.save(player);
-    removePlayingScene(game, intervalId);
+    removePlayingScene(game, intervalId, intervalIdSA);
   });
   menuContent.append(saveAndBackButton);
 
   const backButton = createElement("button", ["button"]);
   backButton.textContent = "BACK TO MENU";
   backButton.addEventListener("click", () => {
-    removePlayingScene(game, intervalId);
+    removePlayingScene(game, intervalId, intervalIdSA);
   });
   menuContent.append(backButton);
 };
 
-const removePlayingScene = (game, intervalId) => {
+const removePlayingScene = (game, intervalId, intervalIdSA) => {
   game.clearObserver();
   clearInterval(intervalId);
+  clearInterval(intervalIdSA);
   removeSwordListeners();
   removePotionListener();
+  removeSuperAttackListener();
   getMainMenu();
 };
 
@@ -98,6 +119,12 @@ const initPlayingElements = (scene) => {
   potion.id = "potion";
   potion.src = "../../../public/img/potion/potion-inactive.png";
   scene.append(potion);
+
+  const superAttackBtn = createElement("img", ["super-attack"]);
+  superAttackBtn.id = "superAttackBtn";
+  superAttackBtn.src =
+    "../../../public/img/super-attack/super-attack-inactive.png";
+  scene.append(superAttackBtn);
 };
 
 const initSoundBtn = (scene) => {
@@ -139,10 +166,11 @@ const initPlayerInfo = (scene) => {
   playerScore.append(scoreImg);
 };
 
-const initListeners = (player) => {
+const initListeners = (player, game) => {
   initSwordListeners();
   initContextMenu();
   initPotion(player);
+  initSuperAttackListener(game, player);
 };
 
 const checkPotion = (player) => {
@@ -155,7 +183,26 @@ const checkPotion = (player) => {
   }, 1);
 };
 
-const initWinModal = (scene, intervalId, game, storage, player) => {
+const checkSuperAttack = (player) => {
+  return setInterval(() => {
+    if (player.score >= 500) {
+      superAttackBtn.src =
+        "../../../public/img/super-attack/super-attack-active.png";
+    } else {
+      superAttackBtn.src =
+        "../../../public/img/super-attack/super-attack-inactive.png";
+    }
+  }, 1);
+};
+
+const initWinModal = (
+  scene,
+  intervalId,
+  game,
+  storage,
+  player,
+  intervalIdSA
+) => {
   const winModal = createElement("div", ["modal"]);
   winModal.id = "winModal";
   scene.append(winModal);
@@ -180,7 +227,7 @@ const initWinModal = (scene, intervalId, game, storage, player) => {
   saveAndBackToMenu.addEventListener("click", () => {
     storage.save(player);
     winModal.style.display = "none";
-    removePlayingScene(game, intervalId);
+    removePlayingScene(game, intervalId, intervalIdSA);
   });
   winContent.append(saveAndBackToMenu);
 
@@ -188,12 +235,12 @@ const initWinModal = (scene, intervalId, game, storage, player) => {
   backToMenu.textContent = "BACK TO MENU";
   backToMenu.addEventListener("click", () => {
     winModal.style.display = "none";
-    removePlayingScene(game, intervalId);
+    removePlayingScene(game, intervalId, intervalIdSA);
   });
   winContent.append(backToMenu);
 };
 
-const initLostModal = (scene, intervalId, game) => {
+const initLostModal = (scene, intervalId, game, intervalIdSA) => {
   const lostModal = createElement("div", ["modal"]);
   lostModal.id = "lostModal";
   scene.append(lostModal);
@@ -209,7 +256,7 @@ const initLostModal = (scene, intervalId, game) => {
   backToMenu.textContent = "BACK TO MENU";
   backToMenu.addEventListener("click", () => {
     lostModal.style.display = "none";
-    removePlayingScene(game, intervalId);
+    removePlayingScene(game, intervalId, intervalIdSA);
   });
   lostContent.append(backToMenu);
 };

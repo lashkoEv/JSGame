@@ -10,12 +10,12 @@ export class Monster {
   #interval;
   #speed;
 
-  constructor(hp, damage, image, reward, speed) {
+  constructor(hp, damage, image, reward) {
     this.#hp = hp;
     this.#damage = damage;
     this.#reward = reward;
     this.#isDead = false;
-    this.#speed = speed;
+    this.#speed = this.#getRandomSpeed();
 
     this.#monsterWrapper = document.createElement("div");
     this.#monsterWrapper.classList.add("monster-wrapper");
@@ -33,22 +33,36 @@ export class Monster {
     this.#image.src = image;
     this.#monsterWrapper.append(this.#image);
 
-    // this.#interval = this.#animate();
+    this.#interval = this.#animate();
   }
 
   #animate() {
+    this.#monsterWrapper.animate(
+      [
+        { transform: "translateY(0)" },
+        { transform: "translateY(-20px)" },
+        { transform: "translateY(0)" },
+        { transform: "translateY(20px)" },
+        { transform: "translateY(0)" },
+      ],
+      this.#speed
+    );
     return setInterval(() => {
       this.#monsterWrapper.animate(
         [
           { transform: "translateY(0)" },
-          { transform: "translateY(-40px)" },
+          { transform: "translateY(-20px)" },
           { transform: "translateY(0)" },
-          { transform: "translateY(40px)" },
+          { transform: "translateY(20px)" },
           { transform: "translateY(0)" },
         ],
         this.#speed
       );
     }, this.#speed);
+  }
+
+  #getRandomSpeed() {
+    return Math.random() * 4000 + 1000;
   }
 
   get hp() {
@@ -97,4 +111,8 @@ export class Monster {
       this.#reward.show();
     }
   }
+
+  #takeDamage(inputDamage) {}
+
+  takeSuperAttack(superDamage) {}
 }

@@ -28,13 +28,13 @@ export class Game {
 
       switch (monsterType) {
         case 1:
-          this.#monsters.push(new Slime());
+          this.#monsters.push(new Slime(this.#player.damage));
           break;
         case 2:
-          this.#monsters.push(new Lizard());
+          this.#monsters.push(new Lizard(this.#player.damage));
           break;
         case 3:
-          this.#monsters.push(new Orc());
+          this.#monsters.push(new Orc(this.#player.damage));
           break;
       }
     }
@@ -60,7 +60,7 @@ export class Game {
         function () {
           const interval = setInterval(() => {
             this.#player.hp = monster.damage;
-
+            
             if (monster.hp <= 0) {
               this.#player.score = monster.reward;
               monster.die();
@@ -133,5 +133,17 @@ export class Game {
     audio.src = "../../../public/sounds/lvl-sounds/lost-2.mp3";
     audio.volume = 0.3;
     audio.play();
+  }
+
+  dealASuperAttack() {
+    this.#monsters.forEach((monster) => {
+      monster.takeSuperAttack(this.#player.superDamage);
+      if (monster.hp <= 0) {
+        monster.checkHp();
+        this.#player.score = monster.reward;
+        monster.die();
+      }
+      this.#checkDeadMonsters();
+    });
   }
 }

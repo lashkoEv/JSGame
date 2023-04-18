@@ -245,6 +245,14 @@ body {
   cursor: pointer;
 }
 
+.super-attack {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 200px;
+  cursor: pointer;
+}
+
 .sword {
   position: absolute;
   bottom: -40px;
